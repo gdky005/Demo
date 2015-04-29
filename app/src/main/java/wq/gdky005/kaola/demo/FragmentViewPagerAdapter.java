@@ -25,21 +25,32 @@ public class FragmentViewPagerAdapter extends PagerAdapter implements ViewPager.
     private ViewPager viewPager; // viewPager对象
     private HorizontalListView listView;
     private int currentPageIndex = 0; // 当前page索引（切换之前）
+    private List<HBean> title;
 
     private OnExtraPageChangeListener onExtraPageChangeListener; // ViewPager切换页面时的额外功能添加接口
 
     public FragmentViewPagerAdapter(FragmentManager fragmentManager, HorizontalListView listView,
-                                    ViewPager viewPager , List<Fragment> fragments) {
+                                    ViewPager viewPager, List<Fragment> fragments, List<HBean> title) {
         this.fragments = fragments;
         this.fragmentManager = fragmentManager;
         this.viewPager = viewPager;
         this.listView = listView;
+        this.title = title;
         this.viewPager.setAdapter(this);
         this.viewPager.setOnPageChangeListener(this);
     }
 
     public OnExtraPageChangeListener getOnExtraPageChangeListener() {
         return onExtraPageChangeListener;
+    }
+
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+
+
+
+        return title.get(position).getText();
     }
 
     /**

@@ -8,6 +8,9 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Toast;
+
+import com.viewpagerindicator.TabPageIndicator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +22,15 @@ import wq.gdky005.kaola.demo.view.HorizontalListView;
 public class MainActivity extends FragmentActivity implements
         AdapterView.OnItemClickListener, View.OnClickListener {
 
+    /**
+     * Tab标题
+     */
+    private static final String[] TITLE = new String[] { "头条", "房产", "另一面", "女人",
+            "财经", "数码", "情感", "科技" };
+
+
     public static final int pageSize = 40;
-    public static final int totalNum = 121;
+    public static final int totalNum = 600;
 
     private HorizontalListView horizontal_list_view;
     private ViewPager view_pager;
@@ -31,11 +41,12 @@ public class MainActivity extends FragmentActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        List<HBean> hList = TestData.getHBeanData(pageSize, totalNum);
+        final List<HBean> hList = TestData.getHBeanData(pageSize, totalNum);
 
         horizontal_list_view = (HorizontalListView) findViewById(R.id.horizontal_list_view);
 
         view_pager = (ViewPager) findViewById(R.id.view_pager);
+        TabPageIndicator indicator = (TabPageIndicator) findViewById(R.id.indicator);
 
         HAdapter adapter = new HAdapter(this);
         adapter.setData(hList);
@@ -56,8 +67,30 @@ public class MainActivity extends FragmentActivity implements
         }
 
 
+
         FragmentViewPagerAdapter fragmentPagerAdapter = new FragmentViewPagerAdapter(
-                this.getSupportFragmentManager(), horizontal_list_view, view_pager, fragments);
+                this.getSupportFragmentManager(), horizontal_list_view, view_pager, fragments, hList);
+
+        indicator.setViewPager(view_pager);
+
+        //如果我们要对ViewPager设置监听，用indicator设置就行了
+        indicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+            @Override
+            public void onPageSelected(int arg0) {
+                Toast.makeText(getApplicationContext(), hList.get(arg0).getText(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onPageScrolled(int arg0, float arg1, int arg2) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int arg0) {
+
+            }
+        });
 //
 //        view_pager.setAdapter(fragmentPagerAdapter);
     }
