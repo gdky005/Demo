@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center"
+    android:padding="5dp"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/notificationImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/notification_download_icon_bg" />
+
+    <ImageView
+        android:id="@+id/notificationImage3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/notification_download_icon_bg" />
+
+    <ImageView
+        android:id="@+id/notificationImage2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/notification_download_icon_bg" />
+
+    <TextView
+        android:id="@+id/tvtv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="我们都是大布局，咿呀咿呀"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/notification_download_icon_bg" />
+
+    <ImageView
+        android:id="@+id/notificationImage1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/notification_download_icon_bg" />
+
+
+</LinearLayout>
